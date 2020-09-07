@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serviceBusNamespace": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+    {
+        "name": "[parameters('serviceBusNamespace')]",
+        "type": "Microsoft.ServiceBus/namespaces",
+        "apiVersion": "2017-04-01",
+        "location": "[resourceGroup().location]",
+        "sku": {
+            "name": "Standard" // For topic support
+        },
+        "properties": {}
+    }
+    ],
+    "outputs": {}
+}
