@@ -6,11 +6,7 @@
 # Parameters for the ARM templates
 Write-Host "Setting parameters..." -ForegroundColor Yellow
 
-$resourceGroupName = 'RG-arm-lab'
-$appServicePlanName = 'ASP-arm-lab'
-$armLabWebApiName = 'armlabwebapi'
-$armLabServiceBusNamespace = 'armlabsb'
-$functionName = 'armlabfa'
+$resourceGroupName = 'RG-arm-lab-p'
 
 Write-Host "...done (Setting parameters)`n`n" -ForegroundColor Green
 
@@ -27,10 +23,10 @@ Write-Host "...done (Creating/ensuring resourcegroup)`n`n" -ForegroundColor Gree
 Write-Host "App Service Plan..." -ForegroundColor Yellow
 
 New-AzResourceGroupDeployment `
-    -Name 'armlab-asp' `
+    -Name 'armlab-asp-p' `
     -ResourceGroupName $resourceGroupName `
-    -appServicePlanName $appServicePlanName `
-    -TemplateFile 'asp.json'
+    -TemplateFile 'asp.json' `
+    -TemplateParameterFile 'asp.parameters.json'
 
 Write-Host "...done (App Service Plan)`n`n" -ForegroundColor Green
 
@@ -39,11 +35,10 @@ Write-Host "...done (App Service Plan)`n`n" -ForegroundColor Green
 Write-Host "App service (web api)..." -ForegroundColor Yellow
 
 New-AzResourceGroupDeployment `
-    -Name 'armlab-webapi' `
+    -Name 'armlab-webapi-p' `
     -ResourceGroupName $resourceGroupName `
-    -webAppName $armLabWebApiName `
-    -appServicePlanName $appServicePlanName `
-    -TemplateFile 'webapi.json'
+    -TemplateFile 'webapi.json' `
+    -TemplateParameterFile 'webapi.parameters.json'
 
 Write-Host "...done (App service (web api))`n`n" -ForegroundColor Green
 
@@ -52,10 +47,10 @@ Write-Host "...done (App service (web api))`n`n" -ForegroundColor Green
 Write-Host "Service bus..." -ForegroundColor Yellow
 
 New-AzResourceGroupDeployment `
-    -Name 'armlab-sb' `
+    -Name 'armlab-sb-p' `
     -ResourceGroupName $resourceGroupName `
-    -serviceBusNamespace $armLabServiceBusNamespace `
-    -TemplateFile "sb.json"
+    -TemplateFile "sb.json" `
+    -TemplateParameterFile 'sb.parameters.json'
 
 Write-Host "...done (Service bus)`n`n" -ForegroundColor Green
 
@@ -64,10 +59,9 @@ Write-Host "...done (Service bus)`n`n" -ForegroundColor Green
 Write-Host "Function app..." -ForegroundColor Yellow
 
 New-AzResourceGroupDeployment `
-    -Name 'armlab-fa' `
+    -Name 'armlab-fa-p' `
     -ResourceGroupName $resourceGroupName `
-    -functionName $functionName `
-    -appServicePlanName $appServicePlanName `
-    -TemplateFile "fa.json"
+    -TemplateFile "fa.json" `
+    -TemplateParameterFile 'fa.parameters.json'
     
 Write-Host "...done (Function app)`n`n" -ForegroundColor Green
