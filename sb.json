@@ -20,5 +20,10 @@
         "properties": {}
     }
     ],
-    "outputs": {}
+    "outputs": {
+        "connectionString": {
+            "type": "string",
+            "value": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/AuthorizationRules',parameters('serviceBusNamespace'),'RootManageSharedAccessKey'),'2015-08-01').primaryConnectionString]"
+        }
+    }
 }
